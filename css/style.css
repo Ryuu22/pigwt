@@ -54,6 +54,7 @@ body {
     height: 100%;
     float: right;
     padding: 10px;
+    border: #ebdbb2 1px solid;
 }
 
 h1 {
@@ -116,5 +117,7 @@ button {
 button:hover {
     background-color: var(--gruvbox-aqua);
 }
+
+
 
 
