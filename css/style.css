@@ -1,0 +1,120 @@
+/* Gruvbox color scheme */
+:root {
+    --gruvbox-bg: #282828;
+    --gruvbox-fg: #ebdbb2;
+    --gruvbox-red: #cc241d;
+    --gruvbox-green: #98971a;
+    --gruvbox-yellow: #d79921;
+    --gruvbox-blue: #458588;
+    --gruvbox-purple: #b16286;
+    --gruvbox-aqua: #689d6a;
+    --gruvbox-orange: #d65d0e;
+}
+/* Example usage */
+body {
+    background-color: var(--gruvbox-bg);
+    color: var(--gruvbox-fg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#title-area{
+    width: 100%;
+    height: 100px;
+    font-size: x-large;
+    text-align: center;
+}
+
+#editor-area {
+    width: 45%;
+    height: 100%;
+    float: left;
+    padding: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#checkboxes {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#checkboxes > input {
+    width: 20px;
+    height: 20px;
+    margin: 0 10px;
+}
+
+#preview-area {
+    width: 45%;
+    height: 100%;
+    float: right;
+    padding: 10px;
+}
+
+h1 {
+    color: var(--gruvbox-fg);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+a {
+    color: var(--gruvbox-blue);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--gruvbox-aqua);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    width: 100%;
+    background-color: var(--gruvbox-bg);
+    color: var(--gruvbox-fg);
+    border: 1px solid var(--gruvbox-fg);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+textarea {
+    background-color: var(--gruvbox-bg);
+    color: var(--gruvbox-fg);
+    border: 1px solid var(--gruvbox-fg);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    width: 100%;
+    height: 300px;
+    resize: none;
+}
+
+hr {
+    color: transparent;
+}
+
+button {
+    background-color: var(--gruvbox-green);
+    color: var(--gruvbox-fg);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--gruvbox-aqua);
+}
+
+
