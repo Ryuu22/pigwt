@@ -33,8 +33,8 @@ class Project {
         cardTextElement.innerHTML = this.description;
         cardBodyElement.appendChild(cardTextElement);
     
-        //let tagContainer = this.generateTagBadges(this.tags);
-        //cardBodyElement.appendChild(tagContainer);
+        let tagContainer = this.generateTagBadges(this.tags);
+        cardBodyElement.appendChild(tagContainer);
     
         cardElement.appendChild(cardBodyElement);
         return cardElement; 
@@ -57,6 +57,7 @@ class Project {
             const element = tagsToGenerate[i];
             let tagElement = document.createElement("span");
             tagElement.className = "tag";
+            console.log(tags.get(element).name);
             tagElement.innerHTML = tags.get(element).name;
             tagElement.style.backgroundColor = tags.get(element).color;
             tagContainer.appendChild(tagElement);
@@ -67,18 +68,23 @@ class Project {
     generatePostListElement() {
         let postItemElement = document.createElement("div");
         postItemElement.className = "post-item";
+
         if(this.id % 2) {
             postItemElement.classList.add("alternative-color");
         }
-
+        
         let postItemThumbnailElement = document.createElement("div");
         postItemThumbnailElement.className = "post-item-thumbnail";
         postItemThumbnailElement.style.backgroundImage = "url(" + this.image + ")";
         postItemElement.appendChild(postItemThumbnailElement);
-
+        
         let postItemTitleElement = document.createElement("div");
         postItemTitleElement.className = "post-item-title";
         postItemTitleElement.innerHTML = this.title;
+
+        postItemTitleElement.onclick = () => {
+            editProject(this.id);
+        }
         postItemElement.appendChild(postItemTitleElement);
         
         let postItemTagsElement = document.createElement("div");
@@ -89,10 +95,6 @@ class Project {
 
         let postItemOptionsElement = document.createElement("div");
         postItemOptionsElement.className = "post-item-options";
-
-        postItemOptionsElement.appendChild(this.generateButtonElement("Edit", "#4CAF50", () => {
-            editProject(this.id);
-        }));
 
         postItemOptionsElement.appendChild(this.generateButtonElement("Delete", "#f44336", () => {
             deleteProject(this.id, postItemElement);

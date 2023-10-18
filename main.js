@@ -1,17 +1,6 @@
-const tags = new Map([
-    [ "All", {"name" : "All", "color" : "#000000" }],
-    [ "FullStack", {"name" : "Full Stack", "color" : "#98bb26" }],
-    [ "Backend", {"name" : "Back End", "color" : "#cc241d" }],
-    [ "GameDev", {"name" : "Game Development", "color" : "#458588" }]
- ]);
-
 let projects = [];
 let selectedProject = null;
 
-const listOfPostsPage = document.getElementById("list-of-posts");
-const postEditorPage = document.getElementById("post-editor");
-const postListContainer = document.getElementById("post-list-container");
-const fileInput = document.getElementById("file-input");
 
 //Add event to file input
 fileInput.addEventListener('change', readSingleFile, false);
@@ -49,7 +38,56 @@ function saveAs(filename, text) {
     element.click();
   
     document.body.removeChild(element);
-  }
+}
+
+function addProject() {
+    showEditor();
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("link").value = "";
+    document.getElementById("image").value = "";
+    let tagList = document.getElementById("tags");
+    for (let i = 0; i < tagList.childNodes.length; i++) {
+        const element = tagList.childNodes[i];
+        element.checked = false;
+    }
+}
+
+function saveProject() {
+    // find data from input fields
+    let title = document.getElementById("title").value;
+    let description = document.getElementById("description").value;
+    let link = document.getElementById("link").value;
+    let image = document.getElementById("image").value;
+    // Get image name
+    image = image.split("\\").pop();
+    image = "resources/" + image;
+
+    let tagList = document.getElementById("tags");
+    let tags = [];
+    for (let i = 0; i < tagList.childNodes.length; i++) {
+        const element = tagList.childNodes[i];
+        if (element.checked) {
+            tags.push(element.value);
+        }
+    }
+
+    if (selectedProject == null) {
+        project = new Project(title, description, link, image, tags);
+        projects.push(project);
+    } else {
+        project = projects[selectedProject];
+        project.title = title;
+        project.description = description;
+        project.link = link;
+        project.image = image;
+        project.tags = tags;
+    }
+
+    displayContents(projects);
+    showList();
+}
+
 
 function displayContents(data) {
     projects = data;
@@ -97,6 +135,7 @@ function loadOnEditor(project) {
             element.checked = false;
         }
     }
+    previewCard()
 }
 
 function previewCard() {
@@ -107,7 +146,7 @@ function previewCard() {
     let image = document.getElementById("image").value;
     // Get image name
     image = image.split("\\").pop();
-    image = "temporal_images/" + image;
+    image = "resources/" + image;
 
     let tagList = document.getElementById("tags");
     let tags = [];

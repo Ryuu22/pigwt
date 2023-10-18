@@ -8,18 +8,18 @@
     </head>
     <body>
         <div class="wrapper">
-            <div id="title-area"> <button onclick="showList()" type="button" style="position: absolute; left: 0; top: 10px;"> ⬅️ </button> <h1>PIGWT: A simple editor</h1> </div>
             <div id="list-of-posts" class="page"> 
                 <div id="list-header">
                     <input hidden type="file" id="file-input" name="file-input" accept=".json">
                     <button onclick="loadFile()">Load</button>
                     <button onclick="saveFile()">Save</button>
+                    <button onclick="addProject()">Post +</button>
                 </div>
                 <div id="post-list-container">
                 </div>
             </div>
             <div id="post-editor" class="page" style="display: none;">
-                <div id="editor-area">
+                <div onchange="previewCard()" onblur="previewCard()" onkeyup="previewCard()" id="editor-area">
                     <label for="image">Image:</label>
                     <input type="file" id="image" name="image"><br><br>
                     
@@ -40,13 +40,14 @@
                     </div>
                     <br><br>
                     <hr> 
-                    <button onclick="previewCard()"> Generate </button>
+                    <button onclick="saveProject()"> Save </button>
                 </div>
                 <div id="preview-area">
                     <div id="preview-container"></div>
                 </div>
             </div>
         </div>
+        <script src="consts.js"></script>
         <script src="project.js"></script>
         <script src="main.js"></script>
     </body>
