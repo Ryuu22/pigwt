@@ -7,33 +7,46 @@
         <link rel="stylesheet" href="css/portfolio.css">
     </head>
     <body>
-        <div id="title-area"> <h1>PIGWT: A simple editor</h1> </div>
-        <div id="editor-area">
-            <label for="image">Image:</label>
-            <input type="file" id="image" name="image"><br><br>
-            
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title"><br><br>
-
-            <label for="title">Link:</label>
-            <input type="text" id="link" name="title"><br><br>
-            
-            <label for="description">Description:</label>
-            <textarea id="description" name="description"></textarea><br><br>
-            
-            <label>Tags:</label>
-            <div id="tags">
-                <input type="checkbox" value="GameDev">Game Dev</input>
-                <input type="checkbox" value="FullStack">Full Stack</input>
-                <input type="checkbox" value="BackEnd">Back End</input>
+        <div class="wrapper">
+            <div id="title-area"> <button onclick="showList()" type="button" style="position: absolute; left: 0; top: 10px;"> ⬅️ </button> <h1>PIGWT: A simple editor</h1> </div>
+            <div id="list-of-posts" class="page"> 
+                <div id="list-header">
+                    <input hidden type="file" id="file-input" name="file-input" accept=".json">
+                    <button onclick="loadFile()">Load</button>
+                </div>
+                <div id="post-list-container">
+                </div>
             </div>
-            <br><br>
-            <hr> 
-            <button onclick="previewCard()"> Generate </button>
+            <div id="post-editor" class="page hidden">
+                <div id="editor-area">
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" name="image"><br><br>
+                    
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title"><br><br>
+        
+                    <label for="title">Link:</label>
+                    <input type="text" id="link" name="title"><br><br>
+                    
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description"></textarea><br><br>
+                    
+                    <label>Tags:</label>
+                    <div id="tags">
+                        <input type="checkbox" value="GameDev">Game Dev</input>
+                        <input type="checkbox" value="FullStack">Full Stack</input>
+                        <input type="checkbox" value="BackEnd">Back End</input>
+                    </div>
+                    <br><br>
+                    <hr> 
+                    <button onclick="previewCard()"> Generate </button>
+                </div>
+                <div id="preview-area">
+                    <div id="preview-container"></div>
+                </div>
+            </div>
         </div>
-        <div id="preview-area">
-            <div id="preview-container"></div>
-        </div>
+        <script src="project.js"></script>
         <script src="main.js"></script>
     </body>
 </html>

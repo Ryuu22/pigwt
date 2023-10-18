@@ -5,58 +5,77 @@ const tags = new Map([
     [ "GameDev", {"name" : "Game Development", "color" : "#458588" }]
  ]);
 
-class Project {
-    constructor(title, description, link, image, tags) {
-        this.title = title;
-        this.description = description;
-        this.link = link;
-        this.image = image;
-        this.tags = tags;
+let projects = [];
+let selectedProject = null;
+
+let showingList = false;
+
+const listOfPostsPage = document.getElementById("list-of-posts");
+const postEditorPage = document.getElementById("post-editor");
+const postListContainer = document.getElementById("post-list-container");
+const fileInput = document.getElementById("file-input");
+
+//Add event to file input
+fileInput.addEventListener('change', readSingleFile, false);
+
+function loadFile() {
+    fileInput.click();
+}
+
+function readSingleFile(e) {
+    var file = e.target.files[0];
+    if (!file) {
+        return;
     }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        var contents = e.target.result;
+        displayContents(contents);
+    };
+    reader.readAsText(file);
+}
 
-    generateCardElement() {
-        let cardElement = document.createElement("div");
-        cardElement.className = "card";
-    
-        let cardLinkElement = document.createElement("a");
-        cardLinkElement.href = this.link;
-    
-        let cardImageElement = document.createElement("div");
-        cardImageElement.className = "card-image";
-        cardImageElement.style.backgroundImage = "url(" + this.image + ")";
-        cardLinkElement.appendChild(cardImageElement);
-        cardElement.appendChild(cardLinkElement);
-    
-        let cardBodyElement = document.createElement("div");
-        cardBodyElement.className = "text-body";
-    
-        let cardTitleElement = document.createElement("h4");
-        cardTitleElement.innerHTML = this.title;
-        cardBodyElement.appendChild(cardTitleElement);
-    
-        let cardTextElement = document.createElement("p");
-        cardTextElement.innerHTML = this.description;
-        cardBodyElement.appendChild(cardTextElement);
-    
-        let tagContainer = this.generateTagBadges(this.tags);
-        cardBodyElement.appendChild(tagContainer);
-    
-        cardElement.appendChild(cardBodyElement);
-        return cardElement; 
-    }    
+function displayContents(data) {
+    jsonData = JSON.parse(data);
+    for (let i = 0; i < jsonData.data.length; i++) {
+        const element = jsonData.data[i];
+        project = new Project(element.title, element.description, element.link, element.image, element.tags, i);
+        postListContainer.appendChild(project.generatePostListElement());
+    }
+}
 
-    generateTagBadges(tagsToGenerate) {
-        let tagContainer = document.createElement("div");
-        tagContainer.className = "tag-container";
-        for (let i = 0; i < tagsToGenerate.length; i++) {
-            const element = tagsToGenerate[i];
-            let tagElement = document.createElement("span");
-            tagElement.className = "tag";
-            tagElement.innerHTML = tags.get(element).name;
-            tagElement.style.backgroundColor = tags.get(element).color;
-            tagContainer.appendChild(tagElement);
+function showList() {
+    if(showingList) {
+        return;
+    }
+    showingList = true;
+    listOfPostsPage.classList.remove("hidden");
+    postEditorPage.classList.add("hidden");
+}
+
+function showEditor() {
+    if(!showingList) {
+        return;
+    }
+    showingList = false;
+    listOfPostsPage.classList.add("hidden");
+    postEditorPage.classList.remove("hidden");
+}
+
+function loadOnEditor(project) {
+    showEditor();
+    document.getElementById("title").value = project.title;
+    document.getElementById("description").value = project.description;
+    document.getElementById("link").value = project.link;
+    document.getElementById("image").value = project.image;
+    let tagList = document.getElementById("tags");
+    for (let i = 0; i < tagList.childNodes.length; i++) {
+        const element = tagList.childNodes[i];
+        if (project.tags.includes(element.value)) {
+            element.checked = true;
+        } else {
+            element.checked = false;
         }
-        return tagContainer;
     }
 }
 
@@ -86,9 +105,3 @@ function previewCard() {
     previewContainer.appendChild(project.generateCardElement());
     
 }
-
-function main() {
-
-}
-
-main();

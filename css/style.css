@@ -1,6 +1,7 @@
 /* Gruvbox color scheme */
 :root {
     --gruvbox-bg: #282828;
+    --gruvbox-bg1: #3c3836;
     --gruvbox-fg: #ebdbb2;
     --gruvbox-red: #cc241d;
     --gruvbox-green: #98971a;
@@ -17,11 +18,125 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.wrapper {
+    margin-right: auto; /* 1 */
+    margin-left:  auto; /* 1 */
+  
+    max-width: 1024px; /* 2 */
+  
+    padding-right: 10px; /* 3 */
+    padding-left:  10px; /* 3 */
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+#list-of-posts {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #title-area{
     width: 100%;
     height: 100px;
     font-size: x-large;
     text-align: center;
+    display: relative;
+}
+
+#list-header {
+    width: 100%;
+    height: 50px;
+    font-size: large;
+    text-align: center;
+    display: relative;
+}
+
+#post-list-container {
+    width: 100%;
+    height: 100%;
+    padding:8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-color: #ebdbb2;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 12px;
+}
+
+.alternative-color {
+    background-color: var(--gruvbox-bg1);
+
+}
+
+.post-item {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px;
+}
+
+.post-item:hover {
+    color: var(--gruvbox-green);
+    cursor: pointer;
+}
+
+.post-item-thumbnail {
+    background-image: url("../temporal_images/TinyDungeon.png");
+    width: 64px;
+    height: 32px;
+    background-size: cover;
+    background-position: center;
+}
+
+.post-item-title {
+    width: 100%;
+    overflow: hidden;
+    margin-left: 10px;
+    text-overflow: ellipsis;
+    font-size: x-large;
+}
+
+.post-item-tags {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    white-space: nowrap;
+    padding: 5px;
+}
+
+.post-item-tag {
+    background-color: var(--primary-color);
+    color: var(--main-hover-text-color);
+    white-space: nowrap;
+    height: 10px;
+    border-radius: 6px;
+    padding: 4px;
+    margin: 2px;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.post-item-options {
+    position: relative;
+    display: flex;
+    align-self: flex-end;
+    align-items: flex-end;
 }
 
 #editor-area {
