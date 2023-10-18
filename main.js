@@ -33,6 +33,24 @@ function readSingleFile(e) {
     reader.readAsText(file);
 }
 
+function saveFile() {
+    let data = JSON.stringify({"data": projects});
+    saveAs("projects.json", data);
+}
+
+function saveAs(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }
+
 function displayContents(data) {
     projects = data;
     postListContainer.innerHTML = "";
