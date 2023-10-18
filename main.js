@@ -8,8 +8,6 @@ const tags = new Map([
 let projects = [];
 let selectedProject = null;
 
-let showingList = false;
-
 const listOfPostsPage = document.getElementById("list-of-posts");
 const postEditorPage = document.getElementById("post-editor");
 const postListContainer = document.getElementById("post-list-container");
@@ -30,36 +28,40 @@ function readSingleFile(e) {
     var reader = new FileReader();
     reader.onload = function(e) {
         var contents = e.target.result;
-        displayContents(contents);
+        displayContents(JSON.parse(contents).data);
     };
     reader.readAsText(file);
 }
 
 function displayContents(data) {
-    jsonData = JSON.parse(data);
-    for (let i = 0; i < jsonData.data.length; i++) {
-        const element = jsonData.data[i];
+    projects = data;
+    postListContainer.innerHTML = "";
+    for (let i = 0; i < data.length; i++) {
+        const element = data[i];
         project = new Project(element.title, element.description, element.link, element.image, element.tags, i);
         postListContainer.appendChild(project.generatePostListElement());
     }
 }
 
 function showList() {
-    if(showingList) {
-        return;
-    }
-    showingList = true;
-    listOfPostsPage.classList.remove("hidden");
-    postEditorPage.classList.add("hidden");
+    listOfPostsPage.style.display = "block";
+    postEditorPage.style.display = "none";
 }
 
 function showEditor() {
-    if(!showingList) {
-        return;
-    }
-    showingList = false;
-    listOfPostsPage.classList.add("hidden");
-    postEditorPage.classList.remove("hidden");
+    listOfPostsPage.style.display = "none";
+    postEditorPage.style.display = "block";
+}
+
+function editProject(project_id) {
+    selectedProject = project_id;
+    loadOnEditor(projects[project_id]);
+}
+
+function deleteProject(project_id, self) {
+    document.getElementById("post-list-container").removeChild(self);
+    projects.splice(projects.indexOf(project_id), 1);
+    displayContents(projects);
 }
 
 function loadOnEditor(project) {
@@ -67,7 +69,7 @@ function loadOnEditor(project) {
     document.getElementById("title").value = project.title;
     document.getElementById("description").value = project.description;
     document.getElementById("link").value = project.link;
-    document.getElementById("image").value = project.image;
+    //document.getElementById("image").value = project.image;
     let tagList = document.getElementById("tags");
     for (let i = 0; i < tagList.childNodes.length; i++) {
         const element = tagList.childNodes[i];

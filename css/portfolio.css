@@ -9,13 +9,6 @@
 
 }
 
-/* html {
-    background-color: var(--main-bg-color);
-    margin-top: 30px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: #ebdbb2;
-} */
-
 .ryuu-button {
     background-color: var(--primary-color);
     text-decoration: none;

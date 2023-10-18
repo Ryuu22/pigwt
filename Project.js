@@ -38,7 +38,17 @@ class Project {
     
         cardElement.appendChild(cardBodyElement);
         return cardElement; 
-    }    
+    } 
+
+    generateButtonElement(text, color, onclick) {
+        let buttonElement = document.createElement("button");
+        buttonElement.type = "button";
+        buttonElement.innerHTML = text;
+        buttonElement.style.backgroundColor = color;
+        buttonElement.onclick = onclick;
+        return buttonElement;
+    }
+
 
     generateTagBadges(tagsToGenerate) {
         let tagContainer = document.createElement("div");
@@ -79,11 +89,15 @@ class Project {
 
         let postItemOptionsElement = document.createElement("div");
         postItemOptionsElement.className = "post-item-options";
-        let editButton = document.createElement("button");
-        editButton.type = "button";
-        editButton.innerHTML = "Edit";
-        editButton.onclick = function() { editPost(this); };
-        postItemOptionsElement.appendChild(editButton);
+
+        postItemOptionsElement.appendChild(this.generateButtonElement("Edit", "#4CAF50", () => {
+            editProject(this.id);
+        }));
+
+        postItemOptionsElement.appendChild(this.generateButtonElement("Delete", "#f44336", () => {
+            deleteProject(this.id, postItemElement);
+        }));
+
         postItemElement.appendChild(postItemOptionsElement);
 
         return postItemElement;
