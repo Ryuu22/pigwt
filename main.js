@@ -9,6 +9,18 @@ function loadFile() {
     fileInput.click();
 }
 
+function loadFromURL() {
+    // Open a prompt to get the URL
+    let url = prompt("Enter the URL of the JSON file");
+    if (url == null || url == "") {
+        return;
+    }
+    // Get the JSON file
+    fetch(url)
+    .then(response => response.json())
+    .then(data => displayContents(data.data));
+}
+
 function readSingleFile(e) {
     var file = e.target.files[0];
     if (!file) {
