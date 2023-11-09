@@ -11,12 +11,16 @@
             <div id="list-of-posts" class="page"> 
                 <div id="list-header">
                     <input hidden type="file" id="file-input" name="file-input" accept=".json">
-                    <button onclick="loadFile()">Load</button>
-                    <button onclick="loadFromURL()">LoadFromURL</button>
+                    <button onclick="loadFile()">Load Local</button>
+                    <button onclick="loadFromURL()">Load From URL</button>
                     <button onclick="saveFile()">Save</button>
                     <button onclick="addProject()">Post +</button>
                 </div>
                 <div id="post-list-container">
+                    <div style="font-size: large;">
+                        Welcome to your portfolio!
+                        Create a post or load a json file to get started!
+                    </div>
                 </div>
             </div>
             <div id="post-editor" class="page" style="display: none;">
