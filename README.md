@@ -1,4 +1,14 @@
-# pigwt
+<p align="center">
+    <img src="./resources/title.png" style="width:50%;">
+</p>
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
+[![GitHub stars](https://img.shields.io/github/stars/Ryuu22/pigwt.svg)](https://github.com/Ryuu22/pigwt/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Ryuu22/pigwt.svg)](https://github.com/Ryuu22/pigwt/network)
+[![GitHub issues](https://img.shields.io/github/issues/Ryuu22/pigwt.svg)](https://github.com/Ryuu22/pigwt/issues)
+
+
+
 Portfolio Item Generator Web Tool
 
 It's a web tool to generate portfolio items for [my personal portfolio](https://portfolio.dankbueno.com/). My personal portfolio reads json data that can be easily generated with this tool.
@@ -20,7 +30,8 @@ _The editor to edit portfolio items_
 - [x] Add portfolio items
 - [x] Import data from json
 - [x] Export data to json 
-- [ ] Import data from remote json
+- [x] Import data from remote json
+- [x] Save data on browser cache
 
 # How to use
 
