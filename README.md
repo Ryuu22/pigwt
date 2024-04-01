@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/Ryuu22/pigwt/resources/Title.png" style="width:50%;">
+    <img src="https://raw.githubusercontent.com/Ryuu22/pigwt/master/resources/Title.png" style="width:50%;">
 </p>
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
